@@ -1,0 +1,52 @@
+use std::env;
+/*
+fn run_app() -> Result<(), ()> {
+    // Application logic here
+/*    
+    for (n,v) in env::vars() {
+        println!("{}: {}", n,v);
+    }
+    println!("------------------------");
+    for (n,v) in env::vars_os() {
+        println!("{}: {}", n.into_string().unwrap(), v.into_string().unwrap());
+    }
+*/
+    let name = "PATH";
+    match env::var(name) {
+        Ok(v) => println!("{}: {}", name, v ),
+        Err(e) => panic!("${} is not set ({})", name, e)
+    }
+    println!(v.contains("")
+    Ok(())
+}*/
+fn path() -> Result<i32> {
+    1;
+}
+
+fn main() {
+    match result {
+    Ok(_) => {
+        println!("Done!");
+        std::process::exit(exitcode::OK);
+    }
+    Err(CustomError::CantReadConfig(e)) => {
+        eprintln!("Error: {}", e);
+        std::process::exit(exitcode::CONFIG);
+    }
+    Err(e) => {
+        eprintln!("Error: {}", e);
+        std::process::exit(exitcode::DATAERR);
+    }
+}
+
+/*
+fn main() {
+    std::process::exit(match run_app() {
+        Ok(_) => 0,
+        Err(err) => {
+            println!("error: {:?}", err);
+            1
+        }
+    });
+*/
+}
