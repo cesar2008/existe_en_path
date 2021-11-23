@@ -4,9 +4,9 @@ use std::process;
 
 fn get_exec_name2() -> String {
     std::env::current_exe()
-    .expect("Can't get the exec path")
+    .expect("No puedo obtener la ruta del ejecutable")
     .file_name()
-    .expect("Can't get the exec name")
+    .expect("No puedo obtener la ruta del ejecutable")
     .to_string_lossy()
     .into_owned()
 }
@@ -14,17 +14,10 @@ fn help() {
     println!("uso:
     {} <RUTA>
     Checkea que la RUTA que se pasa como parametro se encuentre en la variable de entorno PATH.
-    Devuelve en ERRORLEVEL la cantidad de ocurrencias.",get_exec_name2());
+    Devuelve en ERRORLEVEL la cantidad de ocurrencias. ERRORLEVEL==0 si no existe.
+    Si no se ingresa ruta devuelve ERRORLEVEL==-1 y lista todas las rutas cargadas en PATH ordenadas alfabeticamente.",get_exec_name2());
     
-    //println!("\n\n--- LA VARIABLE PATH ---");
-    /*let nomvar="PATH";
-    let u = match env::var_os(nomvar) {
-        Some(v) => {
-            println!("\n{:?}",v.into_string().unwrap());
-        },
-        None => panic!( "no seteado {} $nomvar", nomvar )
-    };*/
-    //println!("{}={}", nomvar,u);
+
     let mut r=0;
     let key = "PATH";
     match env::var_os(key) {
@@ -36,9 +29,6 @@ fn help() {
                 r = r + 1;
                 println!("{}",path.display());
             }
-            /*for path in env::split_paths(&paths) {
-                println!("{} '{}'", r, path.display());
-            }*/
             println!("---\nse listaron {} rutas",r)
         }
         None => println!("La variable de entorno {} no esta definida.", key)
@@ -52,11 +42,9 @@ fn main() {
     if args.len() < 2 {
         help();
         process::exit(-1);
-        //return
     }
 
     let mipath = &args[1];
-    //println!( "mipath= {}", mipath );
 
     let mut r=0;
     let key = "PATH";
@@ -73,8 +61,6 @@ fn main() {
         }
         None => println!("La variable de entorno {} no esta definida.", key)
     }
-//    let r: bool = u.to_uppercase().contains( &(mipath.to_uppercase()) );
-//    println!( "esta {} en PATH ? {}",mipath, r );
 
     process::exit(r);
     

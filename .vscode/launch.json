@@ -8,12 +8,13 @@
             "name": "(Windows) Iniciar",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/target/debug/ExisteEnPATH.exe",
+            "program": "${workspaceFolder}/target/debug/Existe_en_path.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
-            "console": "externalTerminal"
+            "console": "externalTerminal",
+	    "preLaunchTask": "rust: cargo build"
         }
     ]
 }
