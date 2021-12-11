@@ -1,21 +1,23 @@
 use std::env;
-//use std::path::Path;
 use std::process;
+const VERSION: &'static str = env!("CARGO_PKG_VERSION");
 
 fn get_exec_name2() -> String {
-    std::env::current_exe()
+    let exe_name= std::env::current_exe()
     .expect("No puedo obtener la ruta del ejecutable")
     .file_name()
     .expect("No puedo obtener la ruta del ejecutable")
     .to_string_lossy()
-    .into_owned()
+    .into_owned();
+    exe_name
 }
 fn help() {
+    println!("{} \t version {}", get_exec_name2(), VERSION);
     println!("uso:
     {} <RUTA>
-    Checkea que la RUTA que se pasa como parametro se encuentre en la variable de entorno PATH.
-    Devuelve en ERRORLEVEL la cantidad de ocurrencias. ERRORLEVEL==0 si no existe.
-    Si no se ingresa ruta devuelve ERRORLEVEL==-1 y lista todas las rutas cargadas en PATH ordenadas alfabeticamente.",get_exec_name2());
+    -Checkea que la RUTA que se pasa como parametro se encuentre en la variable de entorno PATH.
+    -Devuelve en ERRORLEVEL la cantidad de ocurrencias. ERRORLEVEL==0 si no existe.
+    -Si no se ingresa ruta devuelve ERRORLEVEL==-1 y lista todas las rutas cargadas en PATH ordenadas alfabeticamente.",get_exec_name2());
     
 
     let mut r=0;
