@@ -109,4 +109,4 @@ cargo build --release
 
 ## Licencia
 
-Freeware
+[MIT](https://choosealicense.com/licenses/mit/)
